@@ -14,18 +14,21 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         if gigController.bearer == nil {
             performSegue(withIdentifier: "LoginViewModalSegue", sender: self)
+            
         }
+        
     }
     
     // MARK: - Table view data source
     
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return 0
@@ -41,5 +44,5 @@ class GigsTableViewController: UITableViewController {
             }
         }
     }
-
+    
 }

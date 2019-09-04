@@ -33,7 +33,8 @@ class LoginViewController: UIViewController {
     }
     
     
-    @IBAction func switchSegment(_ sender: Any) {
+   
+    @IBAction func signUpTapped(_ sender: UIButton) {
         
         guard let username = usernameText.text,
             let password = passwordText.text,

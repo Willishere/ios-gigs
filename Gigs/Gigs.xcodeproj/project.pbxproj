@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E6DD55B23206EC200E0ACE1 /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6DD55A23206EC200E0ACE1 /* GigsTableViewController.swift */; };
 		9E7CF6BC2320476F000768BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7CF6BB2320476F000768BF /* AppDelegate.swift */; };
 		9E7CF6C12320476F000768BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7CF6BF2320476F000768BF /* Main.storyboard */; };
 		9E7CF6C323204772000768BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7CF6C223204772000768BF /* Assets.xcassets */; };
 		9E7CF6C623204772000768BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7CF6C423204772000768BF /* LaunchScreen.storyboard */; };
-		9E7CF6CE2320491D000768BF /* GigsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7CF6CD2320491D000768BF /* GigsTableViewController.swift */; };
 		9E7CF6D023204BB5000768BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7CF6CF23204BB5000768BF /* LoginViewController.swift */; };
 		9E7CF6D223204CA8000768BF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7CF6D123204CA8000768BF /* User.swift */; };
 		9E7CF6D423204CE5000768BF /* GigController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7CF6D323204CE5000768BF /* GigController.swift */; };
@@ -19,13 +19,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E6DD55A23206EC200E0ACE1 /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		9E7CF6B82320476F000768BF /* Gigs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gigs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7CF6BB2320476F000768BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7CF6C02320476F000768BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E7CF6C223204772000768BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E7CF6C523204772000768BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7CF6C723204772000768BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9E7CF6CD2320491D000768BF /* GigsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigsTableViewController.swift; sourceTree = "<group>"; };
 		9E7CF6CF23204BB5000768BF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E7CF6D123204CA8000768BF /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9E7CF6D323204CE5000768BF /* GigController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GigController.swift; sourceTree = "<group>"; };
@@ -93,8 +93,8 @@
 		9E7CF6D923204DB0000768BF /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9E7CF6CD2320491D000768BF /* GigsTableViewController.swift */,
 				9E7CF6D323204CE5000768BF /* GigController.swift */,
+				9E6DD55A23206EC200E0ACE1 /* GigsTableViewController.swift */,
 				9E7CF6CF23204BB5000768BF /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
@@ -174,9 +174,9 @@
 				9E7CF6D223204CA8000768BF /* User.swift in Sources */,
 				9E7CF6D023204BB5000768BF /* LoginViewController.swift in Sources */,
 				9E7CF6D623204D34000768BF /* Bearer.swift in Sources */,
-				9E7CF6CE2320491D000768BF /* GigsTableViewController.swift in Sources */,
 				9E7CF6BC2320476F000768BF /* AppDelegate.swift in Sources */,
 				9E7CF6D423204CE5000768BF /* GigController.swift in Sources */,
+				9E6DD55B23206EC200E0ACE1 /* GigsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Gigs Table View Controller-->
         <scene sceneID="JNQ-MJ-8P8">
             <objects>
-                <tableViewController id="Kxf-M3-qfP" sceneMemberID="viewController">
+                <tableViewController id="Kxf-M3-qfP" customClass="GigsTableViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="o1N-HC-26U">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +85,7 @@
                                     <segment title="Sign In"/>
                                 </segments>
                                 <connections>
-                                    <action selector="switchSegment:" destination="iig-g2-Ouy" eventType="valueChanged" id="bcd-dO-Uxs"/>
+                                    <action selector="signInTypeChanged:" destination="iig-g2-Ouy" eventType="valueChanged" id="dKj-6g-TM6"/>
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcQ-ED-RcD">
@@ -93,7 +93,10 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="DS1-7H-L74"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpTapped:" destination="iig-g2-Ouy" eventType="touchUpInside" id="4nF-oi-3wP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -115,7 +118,7 @@
                     </view>
                     <connections>
                         <outlet property="passwordText" destination="CB7-UN-V0b" id="6qi-Um-9ps"/>
-                        <outlet property="segmentedControl" destination="IvB-Ma-QWR" id="q1K-g9-4gm"/>
+                        <outlet property="segmentedControl" destination="IvB-Ma-QWR" id="vf9-WZ-WCu"/>
                         <outlet property="signInButton" destination="BcQ-ED-RcD" id="2rE-YW-6Gp"/>
                         <outlet property="usernameText" destination="LXg-v7-sWS" id="REx-S4-WBI"/>
                     </connections>

@@ -24,14 +24,14 @@ enum NetworkError: Error {
 }
 
 class GigController{
-     var bearer: Bearer?
+    var bearer: Bearer?
     
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
     func signUp(with user: User, completion: @escaping (NetworkError?) -> Void) {
         let signUpUrl = baseURL
-                .appendingPathComponent("users")
-                .appendingPathComponent("signup")
+            .appendingPathComponent("users")
+            .appendingPathComponent("signup")
         
         // https://lambdagigs.vapor.cloud/api/users/signup
         var request = URLRequest(url:signUpUrl)
@@ -68,65 +68,68 @@ class GigController{
             }
             completion(nil)
             }.resume()
+        
     }
-    
-    func login(with user: User, completion: @escaping (NetworkError?) -> Void) {
-        
-        // Set up the URL
-        
-        let loginURL = baseURL
-            .appendingPathComponent("users")
-            .appendingPathComponent("login")
-        
-        // Set up a request
-        
-        var request = URLRequest(url: loginURL)
-        request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let encoder = JSONEncoder()
-        
-        do {
-            request.httpBody = try encoder.encode(user)
-        } catch {
-            NSLog("Error encoding user object: \(error)")
-            completion(.encodingError)
-            return
-        }
-        
-        // Perform the request
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
+        func login(with user: User, completion: @escaping (NetworkError?) -> Void) {
             
-            // Handle errors
+            // Set up the URL
             
-            if let response = response as? HTTPURLResponse,
-                response.statusCode != 200 {
-                completion(.responseError)
-                return
-            }
+            let loginURL = baseURL
+                .appendingPathComponent("users")
+                .appendingPathComponent("login")
             
-            if let error = error {
-                NSLog("Error logging in: \(error)")
-                completion(.otherError)
-                return
-            }
+            // Set up a request
             
-            // (optionally) handle the data returned
+            var request = URLRequest(url: loginURL)
+            request.httpMethod = HTTPMethod.post.rawValue
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            guard let data = data else {
-                completion(.noData)
-                return
-            }
+            let encoder = JSONEncoder()
             
             do {
-                let bearer = try JSONDecoder().decode(Bearer.self, from: data)
-                self.bearer = bearer
+                request.httpBody = try encoder.encode(user)
             } catch {
-                completion(.noDecode)
+                NSLog("Error encoding user object: \(error)")
+                completion(.encodingError)
                 return
             }
-            completion(nil)
-            }.resume()
+            
+            // Perform the request
+            
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Handle errors
+                
+                if let response = response as? HTTPURLResponse,
+                    response.statusCode != 200 {
+                    completion(.responseError)
+                    return
+                }
+                
+                if let error = error {
+                    NSLog("Error logging in: \(error)")
+                    completion(.otherError)
+                    return
+                }
+                
+                // (optionally) handle the data returned
+                
+                guard let data = data else {
+                    completion(.noData)
+                    return
+                }
+                
+                do {
+                    let bearer = try JSONDecoder().decode(Bearer.self, from: data)
+                    self.bearer = bearer
+                } catch {
+                    completion(.noDecode)
+                    return
+                }
+                completion(nil)
+                }.resume()
+        }
+        
 }
-}
+
+
