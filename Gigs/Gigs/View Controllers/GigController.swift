@@ -33,6 +33,7 @@ class GigController{
                 .appendingPathComponent("users")
                 .appendingPathComponent("signup")
         
+        // https://lambdagigs.vapor.cloud/api/users/signup
         var request = URLRequest(url:signUpUrl)
         
         request.httpMethod = HTTPMethod.post.rawValue
