@@ -136,10 +136,10 @@
             </objects>
             <point key="canvasLocation" x="2529" y="38"/>
         </scene>
-        <!--View Controller-->
+        <!--Gig Detail View Controller-->
         <scene sceneID="Dd3-7O-w01">
             <objects>
-                <viewController id="UV0-h9-5f6" sceneMemberID="viewController">
+                <viewController id="UV0-h9-5f6" customClass="GigDetailViewController" customModule="Gigs" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="54o-kc-GyO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -192,8 +192,17 @@
                         <viewLayoutGuide key="safeArea" id="x7V-8G-mcr"/>
                     </view>
                     <navigationItem key="navigationItem" id="mSB-Ik-PnQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7U6-UR-ErC"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="7U6-UR-ErC">
+                            <connections>
+                                <action selector="saveButton:" destination="UV0-h9-5f6" id="FeX-2Y-wWg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="j0D-gU-nzo" id="eHU-R2-zZe"/>
+                        <outlet property="descriptionTextView" destination="03h-aL-9wt" id="vVf-JQ-pZx"/>
+                        <outlet property="jobTitleTextField" destination="8sn-a2-nGe" id="32I-LT-Bci"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afv-Wa-Yid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
