@@ -18,13 +18,16 @@ enum HTTPMethod: String {
 enum NetworkError: Error {
     case encodingError
     case responseError
-    case otherError
+    case otherError(Error)
     case noData
     case noDecode
+    case noToken
 }
 
 class GigController{
     var bearer: Bearer?
+    var gigs: [Gig] = []
+    
     
     let baseURL = URL(string: "https://lambdagigs.vapor.cloud/api")!
     
@@ -63,8 +66,8 @@ class GigController{
             
             if let error = error {
                 NSLog("Error creating user on server: \(error)")
-                completion(.otherError)
-                return
+                completion(.otherError(error))
+                //return
             }
             completion(nil)
             }.resume()
@@ -108,7 +111,7 @@ class GigController{
                 
                 if let error = error {
                     NSLog("Error logging in: \(error)")
-                    completion(.otherError)
+                    completion(.otherError(error))
                     return
                 }
                 
@@ -129,7 +132,109 @@ class GigController{
                 completion(nil)
                 }.resume()
         }
+    
+    func getAllGigNames(){
+        
+        guard let bearer = bearer else {
+        //completion(.failure(.noToken))
+        return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+       
+        
+        var request = URLRequest(url: requestURL)
+        request.httpMethod = HTTPMethod.get.rawValue
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                //completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error getting animal names: \(error)")
+                //completion(.failure(.otherError(error)))
+                return
+            }
+            
+            guard let data = data else {
+                //completion(.failure(.noData))
+                return
+            }
+            
+            let decoder = JSONDecoder()
+            
+            do {
+                self.gigs = try decoder.decode([Gig].self, from: data)
+                
+            } catch let decodingError {
+                NSLog("Error decoding animal names: \(decodingError)")
+                //completion(.failure(.noDecode))
+                return
+            }
+            }.resume()
+        
+        }
+    
+    func createGig(with gig: Gig, completion: @escaping (Result<Bool, NetworkError>) -> Void){
+        guard let bearer = bearer else {
+            completion(.failure(.noToken))
+            return
+        }
+        
+        let requestURL = baseURL
+            .appendingPathComponent("gigs")
+        var request = URLRequest(url:requestURL)
+        
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+    
+        
+        request.setValue("Bearer \(bearer.token)", forHTTPHeaderField: "Authorization")
+        
+     
+        // https://lambdagigs.vapor.cloud/api/users/signup
+        
+        
+        let encoder = JSONEncoder()
+        
+        do {
+            // Convert the User object into JSON data.
+            let gigData = try encoder.encode(gig)
+            
+            // Attach the user JSON to the URLRequest
+            request.httpBody = gigData
+        } catch {
+            NSLog("Error encoding user: \(error)")
+            completion(.failure(.otherError(error)))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            
+            if let response = response as? HTTPURLResponse,
+                response.statusCode != 200 {
+                completion(.failure(.responseError))
+                return
+            }
+            
+            if let error = error {
+                NSLog("Error creating user on server: \(error)")
+                completion(.failure(.otherError(error)))
+                //return
+            }
+            completion(.success(true))
+            }.resume()
+        
+    }
         
 }
+
 
 

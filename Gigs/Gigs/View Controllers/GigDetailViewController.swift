@@ -13,6 +13,21 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    var gig: Gig?{
+        didSet{
+            updateViews()
+        }
+    }
+    
+    func updateViews(){
+        guard let gig = gig else {return}
+        
+        jobTitleTextField.text = gig.title
+        datePicker.date = gig.dueDate
+        descriptionTextView.text = gig.description
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -55,7 +55,7 @@
                     <navigationItem key="navigationItem" id="S5B-OW-gYa">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Z9K-YP-FD9">
                             <connections>
-                                <segue destination="UV0-h9-5f6" kind="show" id="Uk7-N9-Neh"/>
+                                <segue destination="UV0-h9-5f6" kind="show" identifier="AddGig" id="Uk7-N9-Neh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -228,6 +228,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KHk-Rp-Gva"/>
+        <segue reference="Uk7-N9-Neh"/>
     </inferredMetricsTieBreakers>
 </document>
