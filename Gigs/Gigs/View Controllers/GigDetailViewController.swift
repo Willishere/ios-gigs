@@ -13,6 +13,8 @@ class GigDetailViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var descriptionTextView: UITextView!
     
+    var gigController: GigController?
+    
     var gig: Gig?{
         didSet{
             updateViews()
@@ -35,6 +37,14 @@ class GigDetailViewController: UIViewController {
     }
     
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        guard let gigController = gigController, let title = jobTitleTextField.text, let description = descriptionTextView.text
+        else {return}
+        
+        gigController.createGig(with: Gig(title: title, description: description, dueDate: datePicker.date)) {(error) in
+            NSLog("Error creating new gig: \(error)")
+        }else {
+            updateViews()
+        }
     }
     
     /*
