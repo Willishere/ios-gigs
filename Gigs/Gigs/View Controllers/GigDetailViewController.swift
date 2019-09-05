@@ -40,12 +40,9 @@ class GigDetailViewController: UIViewController {
         guard let gigController = gigController, let title = jobTitleTextField.text, let description = descriptionTextView.text
         else {return}
         
-        gigController.createGig(with: Gig(title: title, description: description, dueDate: datePicker.date)) {(error) in
-            NSLog("Error creating new gig: \(error)")
-        }else {
-            updateViews()
+        gigController.createGig(with: Gig(title: title, description: description, dueDate: datePicker.date)) { _ in
+            self.dismiss(animated: true, completion: nil)
         }
-    }
     
     /*
     // MARK: - Navigation
@@ -57,4 +54,5 @@ class GigDetailViewController: UIViewController {
     }
     */
 
+}
 }

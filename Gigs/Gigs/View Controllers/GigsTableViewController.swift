@@ -14,6 +14,7 @@ class GigsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.reloadData()
         gigController.getAllGigNames()
     }
     
